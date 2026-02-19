@@ -1,86 +1,110 @@
-async function getPrice() {
-  const token = document.getElementById("tokenInput").value.toLowerCase();
-  const result = document.getElementById("priceResult");
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Intercom Super App</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="index.js"></script>
 
-  if (!token) {
-    result.innerText = "Enter token id (example: bitcoin)";
-    return;
-  }
-
-  try {
-    const res = await fetch(
-      `https://api.coingecko.com/api/v3/simple/price?ids=${token}&vs_currencies=usd&include_24hr_change=true`
-    );
-    const data = await res.json();
-
-    if (!data[token]) {
-      result.innerText = "Token not found.";
-      return;
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #111827, #000);
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
     }
 
-    const change = data[token].usd_24h_change;
-    const colorClass = change >= 0 ? "green" : "red";
-
-    result.innerHTML =
-      `<strong>${token.toUpperCase()}</strong><br>
-      $${data[token].usd}<br>
-      <span class="${colorClass}">
-      24h: ${change.toFixed(2)}%
-      </span>`;
-  } catch {
-    result.innerText = "Error fetching price.";
-  }
-}
-
-async function getGas() {
-  const result = document.getElementById("gasResult");
-
-  try {
-    const res = await fetch(
-      "https://api.etherscan.io/api?module=gastracker&action=gasoracle"
-    );
-    const data = await res.json();
-
-    if (data.status !== "1") {
-      result.innerText = "Gas API error.";
-      return;
+    h1 {
+      margin-top: 30px;
+      font-size: 32px;
+      background: linear-gradient(90deg,#00f5ff,#ff00c8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    result.innerHTML =
-      `Low: ${data.result.SafeGasPrice} Gwei<br>
-       Avg: ${data.result.ProposeGasPrice} Gwei<br>
-       High: ${data.result.FastGasPrice} Gwei`;
-  } catch {
-    result.innerText = "Error fetching gas.";
-  }
-}
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
 
-async function getTrending() {
-  const list = document.getElementById("trendingList");
-  list.innerHTML = "";
+    .card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      width: 330px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.15);
+      transition: 0.3s;
+    }
 
-  try {
-    const res = await fetch(
-      "https://api.coingecko.com/api/v3/search/trending"
-    );
-    const data = await res.json();
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(255,0,200,0.4);
+    }
 
-    data.coins.slice(0, 5).forEach((coin) => {
-      const li = document.createElement("li");
-      li.innerHTML = `🚀 ${coin.item.name} (${coin.item.symbol.toUpperCase()})`;
-      list.appendChild(li);
-    });
-  } catch {
-    list.innerHTML = "<li>Error fetching trending</li>";
-  }
-}
+    input {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      width: 200px;
+      text-align: center;
+    }
 
-/* Auto refresh every 30 seconds */
-setInterval(() => {
-  getGas();
-  getTrending();
-}, 30000);
+    button {
+      margin-top: 10px;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg,#00f5ff,#ff00c8);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-window.getPrice = getPrice;
-window.getGas = getGas;
-window.getTrending = getTrending;
+    .green { color:#00ff88 }
+    .red { color:#ff4d4d }
+
+    canvas {
+      margin-top: 15px;
+    }
+
+  </style>
+</head>
+<body>
+
+<h1>🚀 Intercom Super App</h1>
+
+<div class="container">
+
+  <div class="card">
+    <h3>💰 Token Price</h3>
+    <input id="tokenInput" placeholder="bitcoin / ethereum / trac"/>
+    <br/>
+    <button onclick="getPrice()">Check</button>
+    <p id="priceResult"></p>
+  </div>
+
+  <div class="card">
+    <h3>📊 Live Chart (7 Days)</h3>
+    <canvas id="chartCanvas"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>🤖 AI Market Insight</h3>
+    <p id="aiOutput">AI waiting for input...</p>
+  </div>
+
+  <div class="card">
+    <h3>⛽ Ethereum Gas</h3>
+    <p id="gasResult">Loading...</p>
+  </div>
+
+</div>
+
+</body>
+</html>
