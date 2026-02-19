@@ -18,8 +18,15 @@ async function getPrice() {
       return;
     }
 
-    result.innerText =
-      `${token.toUpperCase()} Price: $${data[token].usd} | 24h: ${data[token].usd_24h_change.toFixed(2)}%`;
+    const change = data[token].usd_24h_change;
+    const colorClass = change >= 0 ? "green" : "red";
+
+    result.innerHTML =
+      `<strong>${token.toUpperCase()}</strong><br>
+      $${data[token].usd}<br>
+      <span class="${colorClass}">
+      24h: ${change.toFixed(2)}%
+      </span>`;
   } catch {
     result.innerText = "Error fetching price.";
   }
@@ -39,10 +46,10 @@ async function getGas() {
       return;
     }
 
-    result.innerText =
-      `Low: ${data.result.SafeGasPrice} Gwei | ` +
-      `Average: ${data.result.ProposeGasPrice} Gwei | ` +
-      `High: ${data.result.FastGasPrice} Gwei`;
+    result.innerHTML =
+      `Low: ${data.result.SafeGasPrice} Gwei<br>
+       Avg: ${data.result.ProposeGasPrice} Gwei<br>
+       High: ${data.result.FastGasPrice} Gwei`;
   } catch {
     result.innerText = "Error fetching gas.";
   }
@@ -60,10 +67,20 @@ async function getTrending() {
 
     data.coins.slice(0, 5).forEach((coin) => {
       const li = document.createElement("li");
-      li.innerText = `${coin.item.name} (${coin.item.symbol.toUpperCase()})`;
+      li.innerHTML = `🚀 ${coin.item.name} (${coin.item.symbol.toUpperCase()})`;
       list.appendChild(li);
     });
   } catch {
-    list.innerHTML = "<li>Error fetching trending tokens</li>";
+    list.innerHTML = "<li>Error fetching trending</li>";
   }
 }
+
+/* Auto refresh every 30 seconds */
+setInterval(() => {
+  getGas();
+  getTrending();
+}, 30000);
+
+window.getPrice = getPrice;
+window.getGas = getGas;
+window.getTrending = getTrending;
