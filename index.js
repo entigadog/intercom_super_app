@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>IntercomLite</title>
+  <title>IntercomX Super App</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>IntercomLite 🚀</h1>
-  <p>Simple Web3 Execution Agent Demo</p>
+  <div class="container">
+    <h1>IntercomX 🚀</h1>
+    <p>AI-Powered Web3 Super App</p>
 
-  <button onclick="checkBalance()">Check Balance</button>
-  <button onclick="executeSwap()">Execute Swap</button>
+    <div class="card">
+      <h2>Token Swap</h2>
+      <input id="fromToken" placeholder="From Token (ETH)">
+      <input id="toToken" placeholder="To Token (USDC)">
+      <input id="amount" placeholder="Amount">
+      <button onclick="executeSwap()">Swap Now</button>
+    </div>
 
-  <div id="output"></div>
+    <div class="card">
+      <h2>AI Agent Command</h2>
+      <input id="aiInput" placeholder="Type: swap 1 ETH to USDC">
+      <button onclick="runAI()">Execute AI</button>
+    </div>
 
-  <script src="script.js"></script>
+    <div class="card">
+      <h2>Execution Log</h2>
+      <div id="output"></div>
+    </div>
+
+  </div>
+
+<script src="app.js"></script>
 </body>
 </html>
