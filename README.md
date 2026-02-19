@@ -61,7 +61,7 @@ IntercomX is designed to evolve into:
 ## 📊 Dashboard Preview
 
 <p align="center">
-  <img src="assets/dashboard.png" width="850"/>
+  <img src="dashboard-preview.jpg" width="850"/>
 </p>
 
 ---
