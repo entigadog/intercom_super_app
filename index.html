@@ -142,13 +142,27 @@ async function fetchTokenData(id){
 }
 
 // ---------- GAS TRACKER ----------
-async function loadGas(){
-    const res = await fetch("https://api.etherscan.io/api?module=gastracker&action=gasoracle")
-    const data = await res.json()
-    document.getElementById("gasLow").innerText = data.result.SafeGasPrice
-    document.getElementById("gasAvg").innerText = data.result.ProposeGasPrice
-    document.getElementById("gasHigh").innerText = data.result.FastGasPrice
+    async function loadGas(){
+    try {
+        const res = await fetch("https://api.blocknative.com/gasprices/blockprices", {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        const data = await res.json();
+        const prices = data.blockPrices[0].estimatedPrices;
+
+        document.getElementById("gasLow").innerText = prices[0].price;
+        document.getElementById("gasAvg").innerText = prices[1].price;
+        document.getElementById("gasHigh").innerText = prices[2].price;
+    } catch (err) {
+        document.getElementById("gasLow").innerText = "-";
+        document.getElementById("gasAvg").innerText = "-";
+        document.getElementById("gasHigh").innerText = "-";
+    }
 }
+
 
 // ---------- TRENDING ----------
 async function loadTrending(){
