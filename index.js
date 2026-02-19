@@ -105,3 +105,36 @@ async function getGas() {
 
 getGas();
 setInterval(getGas, 30000);
+// 🔥 Background Animated Chart
+
+const bgCtx = document.getElementById("bgChart").getContext("2d");
+
+const bgData = {
+  labels: Array.from({length: 50}, (_, i) => i),
+  datasets: [{
+    data: Array.from({length: 50}, () => Math.random() * 100),
+    borderColor: "#00f5ff",
+    borderWidth: 2,
+    fill: false,
+    tension: 0.4
+  }]
+};
+
+const bgChart = new Chart(bgCtx, {
+  type: "line",
+  data: bgData,
+  options: {
+    animation: false,
+    plugins: { legend: { display: false }},
+    scales: {
+      x: { display: false },
+      y: { display: false }
+    }
+  }
+});
+
+setInterval(() => {
+  bgData.datasets[0].data.shift();
+  bgData.datasets[0].data.push(Math.random() * 100);
+  bgChart.update();
+}, 1000);
