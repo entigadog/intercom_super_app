@@ -1,16 +1,8 @@
 
----
-
-# 📄 3️⃣ Skill File (skill.md)
-
-Bikin file baru kalau belum ada:
-
-`skill.md`
-
 Isi ini:
 
 ```markdown
-# IntercomX Agent Skill
+# IntercomX Agent 
 
 Name: IntercomX AI Agent
 
