@@ -1,20 +1,12 @@
-# IntercomX Super App / AI
+# Agent Instructions
 
-## Description
+This dashboard allows:
 
-IntercomX is a real Web3 AI agent capable of executing live swaps on Uniswap.
+1. Fetching token price from CoinGecko.
+2. Fetching Ethereum gas fee from Etherscan.
+3. Displaying trending crypto tokens.
 
-## Capabilities
-
-- Connect MetaMask
-- Check ETH balance
-- Execute real ETH → USDC swap
-- Parse AI commands
-
-## Agent Instructions
-
-If user says "swap X eth":
-→ Execute swap via Uniswap V3 Router
-
-If user says "check balance":
-→ Return ETH balance
+Agents can:
+- Call getPrice()
+- Call getGas()
+- Call getTrending()
