@@ -1,110 +1,107 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8" />
-  <title>Intercom Super App</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script defer src="index.js"></script>
+let chart;
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at top, #111827, #000);
-      color: white;
-      text-align: center;
-      overflow-x: hidden;
+async function getPrice() {
+  const token = document.getElementById("tokenInput").value.toLowerCase();
+  const result = document.getElementById("priceResult");
+  const aiOutput = document.getElementById("aiOutput");
+
+  if (!token) {
+    result.innerText = "Enter token id (example: bitcoin)";
+    return;
+  }
+
+  try {
+    const res = await fetch(
+      `https://api.coingecko.com/api/v3/coins/${token}`
+    );
+    const data = await res.json();
+
+    const price = data.market_data.current_price.usd;
+    const change = data.market_data.price_change_percentage_24h;
+
+    const color = change >= 0 ? "green" : "red";
+
+    result.innerHTML = `
+      <strong>${data.name}</strong><br>
+      $${price}<br>
+      <span class="${color}">
+      24h: ${change.toFixed(2)}%
+      </span>
+    `;
+
+    generateAIInsight(change);
+    loadChart(token);
+
+  } catch {
+    result.innerText = "Token not found.";
+  }
+}
+
+function generateAIInsight(change) {
+  const aiOutput = document.getElementById("aiOutput");
+
+  if (change > 5) {
+    aiOutput.innerHTML = "🟢 Strong momentum detected. Trend: Bullish.";
+  } else if (change > 0) {
+    aiOutput.innerHTML = "🟡 Mild positive movement. Trend: Stable.";
+  } else if (change < -5) {
+    aiOutput.innerHTML = "🔴 High volatility. Risk: Elevated.";
+  } else {
+    aiOutput.innerHTML = "🟠 Slight correction. Monitor closely.";
+  }
+}
+
+async function loadChart(token) {
+  const res = await fetch(
+    `https://api.coingecko.com/api/v3/coins/${token}/market_chart?vs_currency=usd&days=7`
+  );
+  const data = await res.json();
+
+  const prices = data.prices.map(p => p[1]);
+  const labels = data.prices.map(p => new Date(p[0]).toLocaleDateString());
+
+  const ctx = document.getElementById("chartCanvas");
+
+  if (chart) chart.destroy();
+
+  chart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Price (USD)",
+        data: prices,
+        borderColor: "#00f5ff",
+        backgroundColor: "rgba(0,245,255,0.1)",
+        tension: 0.3
+      }]
+    }
+  });
+}
+
+async function getGas() {
+  const result = document.getElementById("gasResult");
+
+  try {
+    const res = await fetch(
+      "https://api.etherscan.io/api?module=gastracker&action=gasoracle"
+    );
+    const data = await res.json();
+
+    if (data.status !== "1") {
+      result.innerText = "Gas API error.";
+      return;
     }
 
-    h1 {
-      margin-top: 30px;
-      font-size: 32px;
-      background: linear-gradient(90deg,#00f5ff,#ff00c8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    result.innerHTML =
+      `Low: ${data.result.SafeGasPrice} Gwei<br>
+       Avg: ${data.result.ProposeGasPrice} Gwei<br>
+       High: ${data.result.FastGasPrice} Gwei`;
 
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 40px;
-    }
+  } catch {
+    result.innerText = "Gas fetch error.";
+  }
+}
 
-    .card {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      width: 330px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0,255,255,0.15);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px rgba(255,0,200,0.4);
-    }
-
-    input {
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      width: 200px;
-      text-align: center;
-    }
-
-    button {
-      margin-top: 10px;
-      padding: 8px 18px;
-      border: none;
-      border-radius: 8px;
-      background: linear-gradient(90deg,#00f5ff,#ff00c8);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .green { color:#00ff88 }
-    .red { color:#ff4d4d }
-
-    canvas {
-      margin-top: 15px;
-    }
-
-  </style>
-</head>
-<body>
-
-<h1>🚀 Intercom Super App</h1>
-
-<div class="container">
-
-  <div class="card">
-    <h3>💰 Token Price</h3>
-    <input id="tokenInput" placeholder="bitcoin / ethereum / trac"/>
-    <br/>
-    <button onclick="getPrice()">Check</button>
-    <p id="priceResult"></p>
-  </div>
-
-  <div class="card">
-    <h3>📊 Live Chart (7 Days)</h3>
-    <canvas id="chartCanvas"></canvas>
-  </div>
-
-  <div class="card">
-    <h3>🤖 AI Market Insight</h3>
-    <p id="aiOutput">AI waiting for input...</p>
-  </div>
-
-  <div class="card">
-    <h3>⛽ Ethereum Gas</h3>
-    <p id="gasResult">Loading...</p>
-  </div>
-
-</div>
-
-</body>
-</html>
+getGas();
+setInterval(getGas, 30000);
