@@ -1,4 +1,4 @@
-# IntercomX Real Skill
+# IntercomX Super App / AI
 
 ## Description
 
