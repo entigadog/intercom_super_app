@@ -50,3 +50,15 @@ Or deploy easily using:
 
 ## Trac Address
 trac17nx2d9sc6u69n7mcwjepatna8ckvmudgr4f3l72uaerfj3t2r8zqcs6mff
+
+---
+
+## 🤖 Agent Skill Instructions
+
+See `SKILL.md` for automation instructions.
+
+---
+
+## 📜 License
+
+MIT License
