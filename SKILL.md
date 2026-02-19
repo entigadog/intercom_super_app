@@ -1,24 +1,20 @@
-# IntercomX Super App Skill
+# IntercomX Real Skill
 
 ## Description
 
-IntercomX is an AI-powered Web3 Super App capable of executing swaps and parsing natural language commands.
+IntercomX is a real Web3 AI agent capable of executing live swaps on Uniswap.
 
 ## Capabilities
 
-- Execute token swaps
-- Parse AI text commands
-- Generate transaction hashes
-- Simulate gas estimation
-- Provide execution logs
+- Connect MetaMask
+- Check ETH balance
+- Execute real ETH → USDC swap
+- Parse AI commands
 
 ## Agent Instructions
 
-If user requests swap:
-→ Execute swap engine
+If user says "swap X eth":
+→ Execute swap via Uniswap V3 Router
 
-If user types natural language:
-→ Parse intent
-→ Execute related function
-
-Return transaction summary.
+If user says "check balance":
+→ Return ETH balance
