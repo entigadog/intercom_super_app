@@ -2,133 +2,87 @@
   <img src="assets/banner.png" width="100%" />
 </p>
 
-# 🚀 IntercomX Crypto Dashboard
-
-A clean and modern crypto dashboard providing real-time token prices, Ethereum gas tracking, and trending coins.
-
-![License](https://img.shields.io/badge/license-MIT-blue)
-![Status](https://img.shields.io/badge/status-Active-brightgreen)
-![Built With](https://img.shields.io/badge/Built%20With-JavaScript-yellow)
-
----
-
-## 🌟 Overview
-
-This project is a lightweight Web3 dashboard built with pure HTML, CSS, and JavaScript.
-
-It allows users to:
-
-- 💰 Check token price in USD
-- 📈 View 24h market change
-- ⛽ Track Ethereum mainnet gas fees
-- 🔥 See trending crypto tokens
-- ⚡ Auto-refresh every 30 seconds
-
-No wallet connection required.
-
----
-
-## 📸 Dashboard Preview
+<h1 align="center">IntercomX</h1>
+<p align="center">
+  Next-Generation Web3 Crypto Intelligence Dashboard
+</p>
 
 <p align="center">
-  <img src="assets/dashboard.png" width="800"/>
+  <img src="https://img.shields.io/badge/version-1.0.0-blue" />
+  <img src="https://img.shields.io/badge/status-production-brightgreen" />
+  <img src="https://img.shields.io/badge/web3-enabled-purple" />
+  <img src="https://img.shields.io/badge/license-MIT-lightgrey" />
 </p>
 
 ---
 
-## 🎥 Demo
+## 🚀 About IntercomX
+
+**IntercomX** is a modern Web3 crypto analytics dashboard designed for real-time market intelligence.
+
+Built with performance and simplicity in mind, it delivers clean UI, live blockchain metrics, and market insights — without requiring wallet connection.
+
+> Lightweight. Fast. Decentralized-ready.
+
+---
+
+## 🌍 Vision
+
+To build an accessible, high-performance crypto intelligence layer for traders, builders, and Web3 users.
+
+IntercomX is designed to evolve into:
+
+- AI-powered analytics
+- On-chain data tracking
+- Multi-chain support
+- DeFi & token monitoring suite
+
+---
+
+## ✨ Core Features
+
+### 💰 Real-Time Token Pricing
+- Live USD price feed
+- 24h percentage change tracking
+- Gain/loss visual indicators
+
+### ⛽ Ethereum Gas Intelligence
+- Mainnet gas tracker
+- Low / Average / High fee breakdown
+- Optimized refresh cycle
+
+### 🔥 Trending Crypto Monitor
+- Top trending tokens
+- Auto-updated every 30 seconds
+- Market awareness snapshot
+
+---
+
+## 📊 Dashboard Preview
 
 <p align="center">
-  <img src="assets/demo.gif" width="800"/>
+  <img src="assets/dashboard.png" width="850"/>
 </p>
 
 ---
 
-## 🚀 Features
+## 🧠 Architecture
 
-### 💰 Token Price Checker
-- Fetches live price from CoinGecko API
-- Displays 24h percentage change
-- Color-coded gain/loss indicator
+- Frontend: HTML5 + CSS3 (Glass UI System)
+- Core Logic: Vanilla JavaScript
+- Market Data: CoinGecko Public API
+- Gas Data: Ethereum Mainnet Public API
+- Deployment: GitHub Pages
 
-### ⛽ Ethereum Gas Tracker
-- Low / Average / High gas prices
-- Mainnet data from public API
-
-### 🔥 Trending Tokens
-- Top trending coins
-- Updated automatically
+Minimal dependencies. Maximum performance.
 
 ---
 
-## 🛠 Tech Stack
-
-- HTML5
-- CSS3 (Glass UI + Gradient Design)
-- Vanilla JavaScript
-- CoinGecko API
-- Etherscan Gas API
-
----
-
-## 🏁 Quick Start
-
-Clone repository:
+## ⚡ Quick Start
 
 ```bash
 git clone https://github.com/entigadog/intercom_super_app.git
 cd intercom_super_app
-```
 
-Open:
-
-```
-index.html
-```
-
----
-
-## 🌐 Deploy (GitHub Pages)
-
-1. Go to Repository Settings
-2. Click "Pages"
-3. Deploy from branch: `main`
-4. Save
-
-Your live app will be available at:
-
-```
-https://github.com/entigadog/intercom_super_app.git
-```
-
----
-
-## 📁 Project Structure
-
-```
-/
-├── assets/
-│   ├── banner.png
-│   ├── dashboard.png
-│   └── demo.gif
-│
-├── index.html
-├── index.js
-├── LICENSE
-├── README.md
-└── SKILL.md
-```
-
----
-
-## 🔥 TRAC Address
-
-```
+🔐 TRAC Address
 trac17nx2d9sc6u69n7mcwjepatna8ckvmudgr4f3l72uaerfj3t2r8zqcs6mff
-```
-
----
-
-## 📜 License
-
-MIT License © 2026 ENTI
