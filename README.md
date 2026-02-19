@@ -1,22 +1,14 @@
-# IntercomX Super App / AI 🚀
+# IntercomX Crypto Dashboard
 
-AI-powered Web3 Super App executing real swaps on Uniswap.
+Simple Web3 Dashboard that shows:
 
-## Features
+- Live token price (USD)
+- 24h price change
+- Ethereum gas fee (mainnet)
+- Trending tokens
 
-- MetaMask connection
-- Live ETH balance check
-- Real ETH → USDC swap
-- AI command parsing
+## Trac Address
+trac17nx2d9sc6u69n7mcwjepatna8ckvmudgr4f3l72uaerfj3t2r8zqcs6mff
 
 ## How to Run
-
-Open index.html in browser with MetaMask installed.
-
-## Proof
-
-(Add screenshot of successful swap)
-
-## TRAC Address
-
-TRAC: trac17nx2d9sc6u69n7mcwjepatna8ckvmudgr4f3l72uaerfj3t2r8zqcs6mff
+Open index.html in browser.
