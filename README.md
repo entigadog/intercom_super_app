@@ -124,7 +124,7 @@ https://github.com/entigadog/intercom_super_app.git
 ## 🔥 TRAC Address
 
 ```
-0xYOUR_TRAC_MAINNET_ADDRESS
+trac17nx2d9sc6u69n7mcwjepatna8ckvmudgr4f3l72uaerfj3t2r8zqcs6mff
 ```
 
 ---
