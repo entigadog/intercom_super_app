@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.png" width="100%" />
+  <img src="assets/https://chatgpt.com/backend-api/estuary/content?id=file_00000000e84472089ab493bf117d3ea5&ts=492074&p=fs&cid=1&sig=ad90a60679e36aaf3dcdc09edec78747410fae96f46c44f79c858a72200a9ddc&v=0" width="100%" />
 </p>
 
 <h1 align="center">IntercomX</h1>
