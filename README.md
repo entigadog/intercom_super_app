@@ -19,4 +19,4 @@ Open index.html in browser with MetaMask installed.
 
 ## TRAC Address
 
-TRAC: 0xYourTracAddress
+TRAC: trac17nx2d9sc6u69n7mcwjepatna8ckvmudgr4f3l72uaerfj3t2r8zqcs6mff
